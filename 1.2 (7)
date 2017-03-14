@@ -1,0 +1,66 @@
+#include <iostream>
+#include <conio.h>
+#include <math.h>
+#include <windows.h>
+
+using namespace std;
+
+int enter(char str[])
+	{
+		for (int i = 0; str[i] != '\0'; i++)
+		{
+			if (int(str[i]) < 48 || int(str[i]) > 57)
+			{
+				printf("Неверный ввод");
+				return 0;
+			}
+		}
+		return 1;
+	}
+
+	int perevod(char str[])
+	{
+		int temp = 0, num = 0;
+		for (int i = 0; str[i] != '\0'; i++)
+		{
+			temp++;
+		}
+		for (int i = 0; str[i] != '\0'; i++, temp--)
+		{
+			num += (int(str[i]) - 48) * int(pow(10.0, temp - 1));
+		}
+		return num;
+	}
+
+int main()
+{
+	SetConsoleOutputCP(1251);
+	SetConsoleCP(1251);
+	char arr[2697];
+	char str[3];
+	int j = 0;
+	char k[2700];
+	bool a = 1;
+	int b;
+	printf("Введите k: ");
+	while (a)
+	{
+		gets(k);
+		if(enter(k)){b = perevod(k); a = 0;}
+	}
+	for (int i = 100; i <= 999; i++)
+	{
+		itoa(i, str, 10);
+		arr[j] = str[0];
+		arr[j+1] = str[1];
+		arr[j+2] = str[2];
+		j+=3;
+	}
+	for (int j = 0; j < b; j++)
+	{
+		printf("%c", arr[j]);
+	}
+	printf("\n\nk-ая цифра последовательности равна: %c", arr[b-1]);
+	getch();
+	return 0;
+}
